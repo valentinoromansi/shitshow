@@ -85,6 +85,16 @@ const Slider = ({ min, max, step }: SliderProps) => {
 
   return (
     <div className='flex justify-center items-center gap-2 text-xs text-[#d5d5d5]'>
+       <style jsx>{`
+       .input-group-wrapper input {
+          pointer-events: none;
+        }
+
+        /* This will work on safari and chrome, '::-moz-range-thum' and '::-ms-thumb' should be for other browsers */
+        input[type='range']::-webkit-slider-thumb {
+          pointer-events: auto;
+        }
+      `}</style>
       <span>{min}</span>
       <div className='flex flex-col w-full'>
         <div className='relative h-1 rounded-md bg-[#1e2328]'>
@@ -93,7 +103,7 @@ const Slider = ({ min, max, step }: SliderProps) => {
             ref={progressRef}
           ></div>
         </div>
-        <div className='relative'>
+        <div className='relative input-group-wrapper'>
           <>
             <input
               onChange={handleMinChange}
@@ -106,7 +116,8 @@ const Slider = ({ min, max, step }: SliderProps) => {
               step={step}
               max={max}
               value={value.min}
-              className='absolute w-full -top-1 h-1 bg-transparent appearance-none pointer-events-auto cursor-grab'
+              style={{ outline: 'none' }}
+              className= 'absolute w-full -top-1 h-1 bg-transparent appearance-none cursor-grab'
             />
             {showTooltip.min && (
               <div
@@ -129,7 +140,7 @@ const Slider = ({ min, max, step }: SliderProps) => {
               step={step}
               max={max}
               value={value.max}
-              className='absolute w-full -top-1 h-1 bg-transparent appearance-none pointer-events-auto cursor-grab'
+              className='absolute w-full -top-1 h-1 bg-transparent appearance-none cursor-grab'
             />
             {showTooltip.max && (
               <div
