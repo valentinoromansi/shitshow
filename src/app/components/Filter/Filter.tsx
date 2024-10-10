@@ -28,6 +28,7 @@ const Filter = ({ label = 'Godina izdavanja', content }: FilterProps) => {
         <FontAwesomeIcon
           className={`px-[0.25rem] ${isOpen ? 'rotate-180' : ''}`}
           icon={icons.chevronDown}
+          fixedWidth
         />
       </button>
 
