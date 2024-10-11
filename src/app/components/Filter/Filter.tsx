@@ -7,22 +7,19 @@ import IconButton from '../IconButton';
 import { FilterTypes } from '@/app/types/types';
 
 type FilterProps = {
+  dataKey: string;
   label?: string;
   content: ReactNode;
+  isOpen: boolean;
+  onClick: () => void;
 };
 
-const Filter = ({ label = 'Godina izdavanja', content }: FilterProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
+const Filter = ({ dataKey, label = 'Godina izdavanja', content, isOpen, onClick }: FilterProps) => {
   return (
-    <div className='relative whitespace-nowrap border border-transparent rounded bg-transparent transition-colors duration-100 linear flex items-center'>
+    <div data-key={dataKey} className='filter-item relative whitespace-nowrap border border-transparent rounded bg-transparent transition-colors duration-100 linear flex items-center'>
       <button
         className='block font-normal text-[15px] p-[5px_10px] text-[var(--color-light-shade)] overflow-hidden text-ellipsis cursor-pointer '
-        onClick={() => toggleDropdown()}
+        onClick={onClick}
       >
         {label}
         <FontAwesomeIcon
